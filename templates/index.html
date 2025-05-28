@@ -3,63 +3,69 @@
 <head>
     <meta charset="UTF-8" />
     <title>ZoType Roast!</title>
-    <!-- Import font cottagecore vibes -->
+    <!-- Import font classy cottagecore vibes -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
     <style>
         body {
-            background: linear-gradient(135deg, #a8d5ba, #99d4c6, #b3dce1);
+            background-color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             text-align: center;
             padding: 50px;
-            color: #2e5940;
+            color: #4c6444; /* hijau lumut natural */
         }
         h1 {
             font-family: 'Cormorant Garamond', serif;
-            color: #4c8c69;
+            color: #4c6444; /* hijau lumut natural */
             font-size: 52px;
             font-weight: 600;
             margin-bottom: 10px;
             letter-spacing: 0.05em;
         }
         p {
-            color: #355e4b;
+            color: #4c6444; /* hijau lumut natural */
             margin-bottom: 30px;
         }
         form {
-            background: #f2f9f4;
-            padding: 30px;
+            background: #f0f7f4;
+            padding: 40px;
             border-radius: 20px;
             display: inline-block;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            margin-top: 30px;
         }
         select, button {
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
-            margin: 10px;
+            margin: 10px 0;
             border-radius: 10px;
-            border: 2px solid #4c8c69;
+            border: 2px solid #4c6444;
             outline: none;
-            background-color: #e0f1e5;
+            background-color: #eaf4eb;
+            width: 80%;
+            max-width: 300px;
         }
         button {
-            background-color: #4c8c69;
+            background-color: #4c6444;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #3b7055;
+            background-color: #3b5136;
         }
         #result {
             margin-top: 30px;
-            background: #f0f7f4;
-            padding: 20px;
+            background: #f9fbf9;
+            padding: 30px;
             border-radius: 20px;
             max-width: 500px;
             margin-left: auto;
             margin-right: auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             display: none;
+            color: #4c6444; /* hijau lumut natural */
         }
         /* Grid container untuk gambar */
         .grid-container {
@@ -82,6 +88,12 @@
             .grid-container {
                 grid-template-columns: 1fr;
             }
+            form {
+                padding: 30px;
+            }
+            select, button {
+                width: 100%;
+            }
         }
         /* Responsif: 2 kolom di tablet */
         @media (max-width: 900px) and (min-width: 601px) {
@@ -92,10 +104,10 @@
     </style>
 </head>
 <body>
-    <h1>Zodiac & Type Roast! 🌳🌿</h1>
-    <p>Pilih Zodiak & MBTI kamu, setelah itu klik 'Roast Me'!</p>
+    <h1>Zodiac & Type Roast! 🌿✨</h1>
+    <p>Pilih Zodiak & MBTI kamu, lalu klik 'Roast Me'!</p>
     <form id="zodiacForm">
-        <label for="zodiac">Zodiak:</label>
+        <label for="zodiac">Zodiak:</label><br />
         <select id="zodiac" name="zodiac" required>
             <option value="">Pilih Zodiak</option>
             <option value="Aries">Aries</option>
@@ -111,7 +123,7 @@
             <option value="Aquarius">Aquarius</option>
             <option value="Pisces">Pisces</option>
         </select><br />
-        <label for="mbti">MBTI:</label>
+        <label for="mbti">MBTI:</label><br />
         <select id="mbti" name="mbti" required>
             <option value="">Pilih MBTI</option>
             <option value="INFP">INFP</option>
@@ -135,13 +147,8 @@
     </form>
 
     <div id="result">
-        <h2>The Result!:</h2>
+        <h2>The Result! 🌿</h2>
         <p id="description">Roasting kombinasi zodiak + MBTI kamu akan muncul di sini.</p>
-    </div>
-
-    <!-- Contoh grid gambar -->
-    <div class="grid-container">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Nature 1" />
     </div>
 
     <script>
@@ -155,7 +162,7 @@
             const mbti = document.getElementById('mbti').value;
 
             const data = {
-                description: `Insight for Zodiac: ${zodiac} and MBTI: ${mbti} coming soon!`
+                description: `Insight untuk Zodiac: ${zodiac} & MBTI: ${mbti} akan segera hadir! 🌿✨`
             };
 
             descriptionP.textContent = data.description;
