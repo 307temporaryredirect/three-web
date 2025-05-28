@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zodiac + MBTI Insight</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f9d1d1, #fce7d9, #d1f9e6);
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #ff6b81;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #555;
+            margin-bottom: 30px;
+        }
+        form {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            border-radius: 10px;
+            border: 2px solid #ff6b81;
+            outline: none;
+        }
+        button {
+            background-color: #ff6b81;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff4757;
+        }
+        #result {
+            margin-top: 30px;
+            background: #fff3f6;
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Zodiac + MBTI Insight</h1>
+    <p>Pilih Zodiak dan MBTI kamu, lalu lihat insight unikmu!</p>
+    <form id="zodiacForm">
+        <label for="zodiac">Zodiak:</label>
+        <select id="zodiac" name="zodiac" required>
+            <option value="">Pilih Zodiak</option>
+            <option value="Aries">Aries</option>
+            <option value="Taurus">Taurus</option>
+            <option value="Gemini">Gemini</option>
+            <option value="Cancer">Cancer</option>
+            <option value="Leo">Leo</option>
+            <option value="Virgo">Virgo</option>
+            <option value="Libra">Libra</option>
+            <option value="Scorpio">Scorpio</option>
+            <option value="Sagittarius">Sagittarius</option>
+            <option value="Capricorn">Capricorn</option>
+            <option value="Aquarius">Aquarius</option>
+            <option value="Pisces">Pisces</option>
+        </select><br>
+        <label for="mbti">MBTI:</label>
+        <select id="mbti" name="mbti" required>
+            <option value="">Pilih MBTI</option>
+            <option value="INFP">INFP</option>
+            <option value="ENFP">ENFP</option>
+            <option value="INFJ">INFJ</option>
+            <option value="ENFJ">ENFJ</option>
+            <option value="INTJ">INTJ</option>
+            <option value="ENTJ">ENTJ</option>
+            <option value="INTP">INTP</option>
+            <option value="ENTP">ENTP</option>
+            <option value="ISFP">ISFP</option>
+            <option value="ESFP">ESFP</option>
+            <option value="ISTP">ISTP</option>
+            <option value="ESTP">ESTP</option>
+            <option value="ISFJ">ISFJ</option>
+            <option value="ESFJ">ESFJ</option>
+            <option value="ISTJ">ISTJ</option>
+            <option value="ESTJ">ESTJ</option>
+        </select><br>
+        <button type="submit">Lihat Insight!</button>
+    </form>
+
+    <div id="result">
+        <h2>Insight Kamu:</h2>
+        <p id="description">Deskripsi kombinasi zodiak + MBTI kamu akan muncul di sini.</p>
+    </div>
+
+    <script>
+        const form = document.getElementById('zodiacForm');
+        const resultDiv = document.getElementById('result');
+        const descriptionP = document.getElementById('description');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const zodiac = document.getElementById('zodiac').value;
+            const mbti = document.getElementById('mbti').value;
+
+            const response = await fetch(`/get_description?zodiac=${zodiac}&mbti=${mbti}`);
+            const data = await response.json();
+
+            descriptionP.textContent = data.description;
+            resultDiv.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
