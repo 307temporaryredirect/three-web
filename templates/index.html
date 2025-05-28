@@ -134,36 +134,38 @@
 
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
-        const form = document.getElementById('zodiacForm');
-        const resultDiv = document.getElementById('result');
-        const descriptionP = document.getElementById('description');
-        const saveButton = document.getElementById('saveButton');
+    const form = document.getElementById('zodiacForm');
+    const resultDiv = document.getElementById('result');
+    const descriptionP = document.getElementById('description');
+    const saveButton = document.getElementById('saveButton');
 
-        // Data deskripsi terpisah (contoh, bisa 192 nanti)
-        const insights = {
-            "Pisces_ENFP": "Kamu penuh imajinasi, emosional, tapi kadang gampang baper.",
-            "Aries_INTJ": "Kamu ambisius dan logis, tapi kadang terlalu keras kepala.",
-            // Tambah hingga 192 kombinasi...
-        };
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const zodiac = document.getElementById('zodiac').value;
+        const mbti = document.getElementById('mbti').value;
+        const key = `${zodiac}-${mbti}`; // pakai dash sesuai JSON
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const zodiac = document.getElementById('zodiac').value;
-            const mbti = document.getElementById('mbti').value;
-            const key = `${zodiac}_${mbti}`;
-            const description = insights[key] || `Insight untuk Zodiac: ${zodiac} & MBTI: ${mbti} akan segera hadir! 🌿✨`;
-            descriptionP.textContent = description;
-            resultDiv.style.display = 'block';
+        // Panggil API flask untuk ambil deskripsi
+        try {
+            const response = await fetch(`/get_description?zodiac=${encodeURIComponent(zodiac)}&mbti=${encodeURIComponent(mbti)}`);
+            if (!response.ok) throw new Error('Network response was not ok');
+            const data = await response.json();
+            descriptionP.textContent = data.description || `Insight untuk Zodiac: ${zodiac} & MBTI: ${mbti} akan segera hadir! 🌿✨`;
+        } catch (error) {
+            descriptionP.textContent = "Terjadi kesalahan saat mengambil data. Silakan coba lagi.";
+            console.error('Fetch error:', error);
+        }
+        resultDiv.style.display = 'block';
+    });
+
+    saveButton.addEventListener('click', () => {
+        html2canvas(resultDiv).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'zotype-roast-result.png';
+            link.href = canvas.toDataURL();
+            link.click();
         });
-
-        saveButton.addEventListener('click', () => {
-            html2canvas(resultDiv).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'zotype-roast-result.png';
-                link.href = canvas.toDataURL();
-                link.click();
-            });
-        });
-    </script>
+    });
+</script>
 </body>
 </html>
