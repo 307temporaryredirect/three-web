@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8" />
     <title>ZoType Roast!</title>
-    <!-- Import font classy cottagecore vibes -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
     <style>
         body {
@@ -11,18 +10,18 @@
             font-family: 'Montserrat', sans-serif;
             text-align: center;
             padding: 50px;
-            color: #4c6444; /* hijau lumut natural */
+            color: #4c6444;
         }
         h1 {
             font-family: 'Cormorant Garamond', serif;
-            color: #4c6444; /* hijau lumut natural */
+            color: #4c6444;
             font-size: 52px;
             font-weight: 600;
             margin-bottom: 10px;
             letter-spacing: 0.05em;
         }
         p {
-            color: #4c6444; /* hijau lumut natural */
+            color: #4c6444;
             margin-bottom: 30px;
         }
         form {
@@ -65,41 +64,20 @@
             margin-right: auto;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             display: none;
-            color: #4c6444; /* hijau lumut natural */
+            color: #4c6444;
         }
-        /* Grid container untuk gambar */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            margin-top: 40px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
+        #saveButton {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 14px;
+            background-color: #4c6444;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
         }
-        .grid-container img {
-            width: 100%;
-            border-radius: 15px;
-            object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        /* Responsif: 1 kolom di mobile */
-        @media (max-width: 600px) {
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-            form {
-                padding: 30px;
-            }
-            select, button {
-                width: 100%;
-            }
-        }
-        /* Responsif: 2 kolom di tablet */
-        @media (max-width: 900px) and (min-width: 601px) {
-            .grid-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        #saveButton:hover {
+            background-color: #3b5136;
         }
     </style>
 </head>
@@ -147,26 +125,37 @@
     </form>
 
     <div id="result">
-        <h2>The Result!</h2>
+        <h2>The Result! 🌿</h2>
         <p id="description">Roasting kombinasi zodiak + MBTI kamu akan muncul di sini.</p>
+        <p style="margin-top:20px;">Follow <a href="https://x.com/muncorner" target="_blank">@muncorner</a> on X untuk insight lebih seru!</p>
+        <button id="saveButton">Save the Result as Image</button>
     </div>
 
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
         const form = document.getElementById('zodiacForm');
         const resultDiv = document.getElementById('result');
         const descriptionP = document.getElementById('description');
+        const saveButton = document.getElementById('saveButton');
 
-        form.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
             const zodiac = document.getElementById('zodiac').value;
             const mbti = document.getElementById('mbti').value;
-
             const data = {
                 description: `Insight untuk Zodiac: ${zodiac} & MBTI: ${mbti} akan segera hadir! 🌿✨`
             };
-
             descriptionP.textContent = data.description;
             resultDiv.style.display = 'block';
+        });
+
+        saveButton.addEventListener('click', () => {
+            html2canvas(resultDiv).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'zotype-roast-result.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
         });
     </script>
 </body>
