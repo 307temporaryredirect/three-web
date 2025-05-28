@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ZoType Roast!</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
     <style>
@@ -9,7 +10,7 @@
             background-color: #ffffff;
             font-family: 'Montserrat', sans-serif;
             text-align: center;
-            padding: 50px;
+            padding: 50px 20px; /* kasih padding horizontal agar nggak mepet di HP */
             color: #4c6444;
         }
         h1 {
@@ -23,10 +24,11 @@
         p {
             color: #4c6444;
             margin-bottom: 30px;
+            font-size: 16px; /* tambah font size agar lebih nyaman dibaca di HP */
         }
         form {
             background: #f0f7f4;
-            padding: 40px;
+            padding: 40px 20px;
             border-radius: 20px;
             display: inline-block;
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
@@ -57,10 +59,10 @@
         #result {
             margin-top: 30px;
             background: #f9fbf9;
-            font-size: 12px;
+            font-size: 14px; /* lebih besar dari 12px supaya nyaman */
             padding: 20px;
             border-radius: 15px;
-            max-width: 350px; /* Biar lebih kecil di mobile */
+            max-width: 90%; /* buat lebih fleksibel di mobile */
             margin-left: auto;
             margin-right: auto;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -70,7 +72,7 @@
         #saveButton {
             margin-top: 15px;
             padding: 10px 15px;
-            font-size: 10px;
+            font-size: 12px; /* naikin sedikit */
             background-color: #4c6444;
             color: white;
             border: none;
@@ -79,6 +81,32 @@
         }
         #saveButton:hover {
             background-color: #3b5136;
+        }
+        a {
+            color: #3b7644; /* hijau gelap yang cocok sama tema */
+            text-decoration: none;
+            font-weight: 600;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 36px;
+            }
+            form {
+                padding: 30px 15px;
+            }
+            select, button {
+                width: 90%;
+                font-size: 14px;
+            }
+            #result {
+                font-size: 14px;
+                padding: 15px;
+            }
         }
     </style>
 </head>
