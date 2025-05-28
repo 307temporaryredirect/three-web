@@ -16,7 +16,7 @@ def index():
 def get_description():
     zodiac = request.args.get('zodiac')
     mbti = request.args.get('mbti')
-    key = f"{zodiac}_{mbti}"
+    key = f"{zodiac}-{mbti}"
     description = descriptions.get(key, "Deskripsi untuk kombinasi ini belum tersedia. Silakan coba kombinasi lain atau tunggu update dari kami.")
     return jsonify({'description': description})
 
