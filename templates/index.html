@@ -1,29 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Zodiac + MBTI Insight</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <title>ZoType Roast!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
     <style>
         body {
-            background: linear-gradient(135deg, #d4e9d7, #bfe3d6, #cce0f2); /* Hijau biru gradasi */
+            background: linear-gradient(135deg, #d4e9d7, #bfe3d6, #cce0f2);
             font-family: 'Montserrat', sans-serif;
             text-align: center;
             padding: 50px;
-            color: #2e5940; /* Hijau gelap alami */
+            color: #2e5940;
         }
         h1 {
             font-family: 'Pacifico', cursive;
-            color: #4c8c69; /* Hijau alami */
+            color: #4c8c69;
             font-size: 48px;
             margin-bottom: 10px;
         }
         p {
-            color: #355e4b; /* Hijau lembut */
+            color: #355e4b;
             margin-bottom: 30px;
         }
         form {
-            background: #f2f9f4; /* Putih kehijauan */
+            background: #f2f9f4;
             padding: 30px;
             border-radius: 20px;
             display: inline-block;
@@ -34,22 +34,22 @@
             font-size: 16px;
             margin: 10px;
             border-radius: 10px;
-            border: 2px solid #4c8c69; /* Border hijau natural */
+            border: 2px solid #4c8c69;
             outline: none;
-            background-color: #e0f1e5; /* Hijau pastel */
+            background-color: #e0f1e5;
         }
         button {
-            background-color: #4c8c69; /* Hijau natural */
+            background-color: #4c8c69;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #3b7055; /* Lebih gelap */
+            background-color: #3b7055;
         }
         #result {
             margin-top: 30px;
-            background: #f0f7f4; /* Putih kehijauan */
+            background: #f0f7f4;
             padding: 20px;
             border-radius: 20px;
             max-width: 500px;
@@ -58,11 +58,39 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             display: none;
         }
+        /* Grid container untuk gambar */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .grid-container img {
+            width: 100%;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        /* Responsif mobile: 1 kolom */
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        /* Tablet: 2 kolom */
+        @media (max-width: 900px) and (min-width: 601px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>Zodiac + MBTI Insight</h1>
-    <p>Pilih Zodiak dan MBTI kamu, lalu lihat insight unikmu!</p>
+    <h1>Zodiac & Type Roast! 🌳🌿</h1>
+    <p>Pilih Zodiak & MBTI kamu, setelah itu klik 'Roast Me'!</p>
     <form id="zodiacForm">
         <label for="zodiac">Zodiak:</label>
         <select id="zodiac" name="zodiac" required>
@@ -79,7 +107,7 @@
             <option value="Capricorn">Capricorn</option>
             <option value="Aquarius">Aquarius</option>
             <option value="Pisces">Pisces</option>
-        </select><br>
+        </select><br />
         <label for="mbti">MBTI:</label>
         <select id="mbti" name="mbti" required>
             <option value="">Pilih MBTI</option>
@@ -99,13 +127,18 @@
             <option value="ESFJ">ESFJ</option>
             <option value="ISTJ">ISTJ</option>
             <option value="ESTJ">ESTJ</option>
-        </select><br>
-        <button type="submit">Lihat Insight!</button>
+        </select><br />
+        <button type="submit">Roast Me!</button>
     </form>
 
     <div id="result">
-        <h2>Insight Kamu:</h2>
-        <p id="description">Deskripsi kombinasi zodiak + MBTI kamu akan muncul di sini.</p>
+        <h2>The Result!:</h2>
+        <p id="description">Roasting kombinasi zodiak + MBTI kamu akan muncul di sini.</p>
+    </div>
+
+    <!-- Contoh grid gambar -->
+    <div class="grid-container">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Nature 1" />
     </div>
 
     <script>
@@ -118,8 +151,10 @@
             const zodiac = document.getElementById('zodiac').value;
             const mbti = document.getElementById('mbti').value;
 
-            const response = await fetch(`/get_description?zodiac=${zodiac}&mbti=${mbti}`);
-            const data = await response.json();
+            // Contoh dummy response
+            const data = {
+                description: `Insight for Zodiac: ${zodiac} and MBTI: ${mbti} coming soon!`
+            };
 
             descriptionP.textContent = data.description;
             resultDiv.style.display = 'block';
