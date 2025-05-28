@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8" />
     <title>ZoType Roast!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
+    <!-- Import font cottagecore vibes -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Montserrat:wght@400;600&display=swap" rel="stylesheet" />
     <style>
         body {
-            background: linear-gradient(135deg, #d4e9d7, #bfe3d6, #cce0f2);
+            background: linear-gradient(135deg, #a8d5ba, #99d4c6, #b3dce1);
             font-family: 'Montserrat', sans-serif;
             text-align: center;
             padding: 50px;
             color: #2e5940;
         }
         h1 {
-  font-family: 'Cormorant Garamond', serif;
-  color: #4c8c69;
-  font-size: 52px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  letter-spacing: 0.05em;
-}
+            font-family: 'Cormorant Garamond', serif;
+            color: #4c8c69;
+            font-size: 52px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
         }
         p {
             color: #355e4b;
@@ -77,13 +77,13 @@
             object-fit: cover;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        /* Responsif mobile: 1 kolom */
+        /* Responsif: 1 kolom di mobile */
         @media (max-width: 600px) {
             .grid-container {
                 grid-template-columns: 1fr;
             }
         }
-        /* Tablet: 2 kolom */
+        /* Responsif: 2 kolom di tablet */
         @media (max-width: 900px) and (min-width: 601px) {
             .grid-container {
                 grid-template-columns: repeat(2, 1fr);
@@ -154,7 +154,6 @@
             const zodiac = document.getElementById('zodiac').value;
             const mbti = document.getElementById('mbti').value;
 
-            // Contoh dummy response
             const data = {
                 description: `Insight for Zodiac: ${zodiac} and MBTI: ${mbti} coming soon!`
             };
