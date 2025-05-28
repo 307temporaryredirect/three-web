@@ -2,32 +2,39 @@ body {
     background: linear-gradient(135deg, #d0f0c0, #b5e7a0, #a7c7e7); /* hijau pastel + biru pastel */
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    padding: 50px;
+    padding: 20px;
+    margin: 0;
 }
 h1 {
     font-family: 'Pacifico', cursive;
     color: #3c8d49; /* hijau lebih gelap */
-    font-size: 48px;
+    font-size: 36px;
     margin-bottom: 10px;
 }
 p {
     color: #4d6355; /* hijau natural */
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    font-size: 16px;
 }
 form {
     background: white;
-    padding: 30px;
-    border-radius: 20px;
+    padding: 20px;
+    border-radius: 15px;
     display: inline-block;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    width: 90%;
+    max-width: 400px;
+    box-sizing: border-box;
 }
 select, button {
     padding: 10px;
     font-size: 16px;
-    margin: 10px;
+    margin: 10px 0;
     border-radius: 10px;
     border: 2px solid #3c8d49; /* hijau tegas */
     outline: none;
+    width: 100%;
+    box-sizing: border-box;
 }
 button {
     background-color: #3c8d49; /* hijau solid */
@@ -39,13 +46,28 @@ button:hover {
     background-color: #2e6f38; /* hijau lebih gelap untuk hover */
 }
 #result {
-    margin-top: 30px;
+    margin-top: 20px;
     background: #e9f5e1; /* hijau lembut */
-    padding: 20px;
-    border-radius: 20px;
-    max-width: 500px;
+    padding: 15px;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     display: none;
+    box-sizing: border-box;
+}
+
+/* Tambahkan responsif untuk font dan layout */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 28px;
+    }
+    p {
+        font-size: 14px;
+    }
+    select, button {
+        font-size: 14px;
+    }
 }
