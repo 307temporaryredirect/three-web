@@ -58,9 +58,9 @@
             margin-top: 30px;
             background: #f9fbf9;
             font-size: 12px;
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 500px;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 350px; /* Biar lebih kecil di mobile */
             margin-left: auto;
             margin-right: auto;
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -139,14 +139,20 @@
         const descriptionP = document.getElementById('description');
         const saveButton = document.getElementById('saveButton');
 
+        // Data deskripsi terpisah (contoh, bisa 192 nanti)
+        const insights = {
+            "Pisces_ENFP": "Kamu penuh imajinasi, emosional, tapi kadang gampang baper.",
+            "Aries_INTJ": "Kamu ambisius dan logis, tapi kadang terlalu keras kepala.",
+            // Tambah hingga 192 kombinasi...
+        };
+
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const zodiac = document.getElementById('zodiac').value;
             const mbti = document.getElementById('mbti').value;
-            const data = {
-                description: `Insight untuk Zodiac: ${zodiac} & MBTI: ${mbti} akan segera hadir! 🌿✨`
-            };
-            descriptionP.textContent = data.description;
+            const key = `${zodiac}_${mbti}`;
+            const description = insights[key] || `Insight untuk Zodiac: ${zodiac} & MBTI: ${mbti} akan segera hadir! 🌿✨`;
+            descriptionP.textContent = description;
             resultDiv.style.display = 'block';
         });
 
